@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author ERodríguez
- * @version 24/06/2022
+ * @version 25/06/2022
  */
 public class HashTable {
     int tamanhoTabla = 23;
@@ -82,8 +82,8 @@ public class HashTable {
     public long transformarClave(String clave){
         long d = 0;
         
-        for (int i = 0; i < Math.min(10, clave.length()); i++) {
-            d = d * 27 + (int)clave.charAt(i); //ASCII
+        for (int i = 0; i < clave.length(); i++) {
+            d += (i+1) * (int)clave.charAt(i); //ASCII
         }
         
         if(d<0) { //se supera el máximo de int y se generan numeros negativos 

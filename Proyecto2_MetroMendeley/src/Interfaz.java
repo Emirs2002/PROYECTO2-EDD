@@ -37,18 +37,23 @@ public class Interfaz extends javax.swing.JFrame {
         buscarpalabraclave = new javax.swing.JButton();
         buscarautor = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         volveragregar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         volveranalizar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         volverbuscarpalabraclave = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         volverbuscarautor = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.setBackground(new java.awt.Color(153, 153, 255));
+        jTabbedPane1.setBackground(new java.awt.Color(255, 204, 51));
         jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 255));
@@ -57,15 +62,15 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("SOUTH LIBRARY");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Agregue su resumen y navegue por las diferentes pestañas...");
         jLabel2.setToolTipText("");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 530, 90));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 530, 90));
 
-        agregarresumen.setBackground(new java.awt.Color(153, 153, 255));
+        agregarresumen.setBackground(new java.awt.Color(255, 204, 51));
         agregarresumen.setForeground(new java.awt.Color(0, 0, 0));
         agregarresumen.setText("AGREGAR RESUMEN ");
         agregarresumen.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +80,7 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel2.add(agregarresumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 160, 40));
 
-        analizar.setBackground(new java.awt.Color(153, 153, 255));
+        analizar.setBackground(new java.awt.Color(255, 204, 51));
         analizar.setForeground(new java.awt.Color(0, 0, 0));
         analizar.setText("ANALIZAR RESUMEN ");
         analizar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +90,7 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel2.add(analizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 160, 40));
 
-        buscarpalabraclave.setBackground(new java.awt.Color(153, 153, 255));
+        buscarpalabraclave.setBackground(new java.awt.Color(255, 204, 51));
         buscarpalabraclave.setForeground(new java.awt.Color(0, 0, 0));
         buscarpalabraclave.setText("BUSCAR POR P.CLAVE");
         buscarpalabraclave.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +100,7 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel2.add(buscarpalabraclave, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 160, 40));
 
-        buscarautor.setBackground(new java.awt.Color(153, 153, 255));
+        buscarautor.setBackground(new java.awt.Color(255, 204, 51));
         buscarautor.setForeground(new java.awt.Color(0, 0, 0));
         buscarautor.setText("BUSCAR POR AUTOR");
         buscarautor.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +110,7 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel2.add(buscarautor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 160, 40));
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 255));
+        jButton1.setBackground(new java.awt.Color(255, 204, 51));
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("SALIR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -113,14 +118,17 @@ public class Interfaz extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, 100, 40));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 480, 100, 40));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Open-folder-search-icon.png"))); // NOI18N
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
         jTabbedPane1.addTab("INICIO", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        volveragregar.setBackground(new java.awt.Color(153, 153, 255));
+        volveragregar.setBackground(new java.awt.Color(255, 204, 51));
         volveragregar.setForeground(new java.awt.Color(0, 0, 0));
         volveragregar.setText("VOLVER");
         volveragregar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,12 +138,15 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel3.add(volveragregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 480, 100, 30));
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addresumen_1.png"))); // NOI18N
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
+
         jTabbedPane1.addTab("ADD RESUMEN", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        volveranalizar.setBackground(new java.awt.Color(153, 153, 255));
+        volveranalizar.setBackground(new java.awt.Color(255, 204, 51));
         volveranalizar.setForeground(new java.awt.Color(0, 0, 0));
         volveranalizar.setText("VOLVER");
         volveranalizar.addActionListener(new java.awt.event.ActionListener() {
@@ -145,12 +156,15 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel4.add(volveranalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 100, 40));
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/document-search-flat.png"))); // NOI18N
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
+
         jTabbedPane1.addTab("ANALIZAR RESUMEN", jPanel4);
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        volverbuscarpalabraclave.setBackground(new java.awt.Color(153, 153, 255));
+        volverbuscarpalabraclave.setBackground(new java.awt.Color(255, 204, 51));
         volverbuscarpalabraclave.setForeground(new java.awt.Color(0, 0, 0));
         volverbuscarpalabraclave.setText("VOLVER");
         volverbuscarpalabraclave.addActionListener(new java.awt.event.ActionListener() {
@@ -160,12 +174,15 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel5.add(volverbuscarpalabraclave, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 90, 30));
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/keyword.png"))); // NOI18N
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
+
         jTabbedPane1.addTab("BUSCAR P.CLAVE", jPanel5);
 
         jPanel6.setBackground(new java.awt.Color(51, 51, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        volverbuscarautor.setBackground(new java.awt.Color(153, 153, 255));
+        volverbuscarautor.setBackground(new java.awt.Color(255, 204, 51));
         volverbuscarautor.setForeground(new java.awt.Color(0, 0, 0));
         volverbuscarautor.setText("VOLVER");
         volverbuscarautor.addActionListener(new java.awt.event.ActionListener() {
@@ -175,21 +192,20 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jPanel6.add(volverbuscarautor, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 480, 100, 30));
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/document-search-icon_2.png"))); // NOI18N
+        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
+
         jTabbedPane1.addTab("BUSCAR P.AUTOR", jPanel6);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -289,6 +305,11 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

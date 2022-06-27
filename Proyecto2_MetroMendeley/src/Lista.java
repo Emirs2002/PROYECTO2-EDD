@@ -115,6 +115,29 @@ public class Lista {
             }
         }
     
+     //Obtener info
+    public String ObtenerInfo(){
+        Nodo temp = pfirst;
+        if (this.isEmpty()){
+            JOptionPane.showMessageDialog(null, "La lista está vacía");
+        }
+        else{
+                    
+            String print = "";             
+
+            for (int i = 0; i< this.getTamanho(); i++ ){               
+
+                print += temp.getData() + "\n";
+                
+                temp = proximoNodo(temp);               
+                
+               }
+            return print;
+   
+            }
+        return null;
+        }
+    
 
     //ELIMINA AL INICIO
     public void deleteAtStart(){

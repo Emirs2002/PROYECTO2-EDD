@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author ERodríguez
- * @version 24/06/2022
+ * @version 26/06/2022
  */
 public class Resumen {
     

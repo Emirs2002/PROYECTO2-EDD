@@ -159,6 +159,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         outputResumen.setColumns(20);
         outputResumen.setRows(5);
+        outputResumen.setFocusable(false);
         jScrollPane1.setViewportView(outputResumen);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 310, 310));
@@ -308,7 +309,7 @@ public class Interfaz extends javax.swing.JFrame {
 
                     if(hs.buscar(resumen.getTitulo()) == null){
                         hs.insertar(resumen);
-                        outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave());
+                        outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
 
 
                     }else{
@@ -319,8 +320,9 @@ public class Interfaz extends javax.swing.JFrame {
                 else{
 
                     hs.insertar(resumen);
-                    outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave());
-
+                    outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
+                    
+                    
                 }
 
             }else{

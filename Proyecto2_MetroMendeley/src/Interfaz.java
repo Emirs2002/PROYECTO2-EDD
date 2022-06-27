@@ -2,13 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 /**
  *
  * @author simon
  */
 public class Interfaz extends javax.swing.JFrame {
-
+    HashTable hs = new HashTable();
+    
     /**
      * Creates new form Interfaz
      */
@@ -41,9 +44,16 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         volveragregar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        seleccionar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        outputResumen = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         volveranalizar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        cboResumenes = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        analisisderesumen = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
         volverbuscarpalabraclave = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -56,7 +66,7 @@ public class Interfaz extends javax.swing.JFrame {
         jTabbedPane1.setBackground(new java.awt.Color(255, 204, 51));
         jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel2.setBackground(new java.awt.Color(51, 153, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 36)); // NOI18N
@@ -66,7 +76,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Agregue su resumen y navegue por las diferentes pestañas...");
+        jLabel2.setText("Agregue su resumen y navegue por las diferentes pestañas");
         jLabel2.setToolTipText("");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 530, 90));
 
@@ -121,11 +131,11 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 480, 100, 40));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Open-folder-search-icon.png"))); // NOI18N
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 520, 510));
 
         jTabbedPane1.addTab("INICIO", jPanel2);
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel3.setBackground(new java.awt.Color(51, 153, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         volveragregar.setBackground(new java.awt.Color(255, 204, 51));
@@ -136,14 +146,30 @@ public class Interfaz extends javax.swing.JFrame {
                 volveragregarActionPerformed(evt);
             }
         });
-        jPanel3.add(volveragregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 480, 100, 30));
+        jPanel3.add(volveragregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 470, 100, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addresumen_1.png"))); // NOI18N
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
 
+        seleccionar.setBackground(new java.awt.Color(255, 204, 51));
+        seleccionar.setForeground(new java.awt.Color(0, 0, 0));
+        seleccionar.setText("SELECCIONAR");
+        seleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(seleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 150, 60));
+
+        outputResumen.setColumns(20);
+        outputResumen.setRows(5);
+        jScrollPane1.setViewportView(outputResumen);
+
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 310, 310));
+
         jTabbedPane1.addTab("ADD RESUMEN", jPanel3);
 
-        jPanel4.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel4.setBackground(new java.awt.Color(51, 153, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         volveranalizar.setBackground(new java.awt.Color(255, 204, 51));
@@ -157,11 +183,33 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel4.add(volveranalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 100, 40));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/document-search-flat.png"))); // NOI18N
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
+
+        cboResumenes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboResumenesItemStateChanged(evt);
+            }
+        });
+        cboResumenes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboResumenesActionPerformed(evt);
+            }
+        });
+        jPanel4.add(cboResumenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 350, -1));
+
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Lista de resumenes ");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        analisisderesumen.setColumns(20);
+        analisisderesumen.setRows(5);
+        jScrollPane2.setViewportView(analisisderesumen);
+
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 460, 390));
 
         jTabbedPane1.addTab("ANALIZAR RESUMEN", jPanel4);
 
-        jPanel5.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel5.setBackground(new java.awt.Color(51, 153, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         volverbuscarpalabraclave.setBackground(new java.awt.Color(255, 204, 51));
@@ -179,7 +227,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("BUSCAR P.CLAVE", jPanel5);
 
-        jPanel6.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel6.setBackground(new java.awt.Color(51, 153, 255));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         volverbuscarautor.setBackground(new java.awt.Color(255, 204, 51));
@@ -261,6 +309,70 @@ public class Interfaz extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    /**
+    *
+    * @author ERodríguez
+    * @version 25/06/2022
+    */
+    private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
+        
+        JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(null);
+       
+        File archivo = fc.getSelectedFile();
+        
+        String filename = archivo.getPath();
+        
+        try{
+            if((archivo.getName()).contains(".txt"))
+            {
+                Resumen resumen = new Resumen(filename);  
+
+                if(hs.getNumElementos() != 0)
+                {                
+
+                    if(hs.buscar(resumen.getTitulo()) == null){
+                        hs.insertar(resumen);
+                        outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave());
+                        cboResumenes.addItem(resumen.getTitulo());
+
+
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Error, no se puede insertar el mismo resumen dos veces.");
+                    }
+
+                }
+                else{
+
+                    hs.insertar(resumen);
+                    outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave());
+                    cboResumenes.addItem(resumen.getTitulo());
+
+                }
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Tipo de archivo inválido, ingrese un archivo de texto.");
+            }
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Archivo inválido.");
+        }
+    }//GEN-LAST:event_seleccionarActionPerformed
+
+    private void cboResumenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboResumenesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboResumenesActionPerformed
+
+    private void cboResumenesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboResumenesItemStateChanged
+        String titresumen = (String) cboResumenes.getSelectedItem();
+        Resumen clave = hs.buscar(titresumen);
+        if (titresumen == clave.getTitulo()){
+            analisisderesumen.setText("Nombre del trabajo: "+ clave.getTitulo()+"\n" + "\n"+"Autores: "+ "\n" +clave.getAutor());
+        }else{
+            JOptionPane.showMessageDialog(null, "Lo sentimos no se puede mostrar el analisis de este resumen");
+        }
+    }//GEN-LAST:event_cboResumenesItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -299,14 +411,17 @@ public class Interfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarresumen;
+    private javax.swing.JTextArea analisisderesumen;
     private javax.swing.JButton analizar;
     private javax.swing.JButton buscarautor;
     private javax.swing.JButton buscarpalabraclave;
+    private javax.swing.JComboBox<String> cboResumenes;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -316,7 +431,11 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea outputResumen;
+    private javax.swing.JButton seleccionar;
     private javax.swing.JButton volveragregar;
     private javax.swing.JButton volveranalizar;
     private javax.swing.JButton volverbuscarautor;

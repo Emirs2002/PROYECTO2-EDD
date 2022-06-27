@@ -288,7 +288,7 @@ public class Interfaz extends javax.swing.JFrame {
     /**
     *
     * @author ERodríguez
-    * @version 25/06/2022
+    * @version 27/06/2022
     */
     private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
         
@@ -309,7 +309,7 @@ public class Interfaz extends javax.swing.JFrame {
 
                     if(hs.buscar(resumen.getTitulo()) == null){
                         hs.insertar(resumen);
-                        outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
+                        outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
 
 
                     }else{
@@ -320,7 +320,7 @@ public class Interfaz extends javax.swing.JFrame {
                 else{
 
                     hs.insertar(resumen);
-                    outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
+                    outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
                     
                     
                 }

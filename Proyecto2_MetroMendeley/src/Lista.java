@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author ERodríguez
- * @version 26/06/22
+ * @version 27/06/22
  */
 public class Lista {
     

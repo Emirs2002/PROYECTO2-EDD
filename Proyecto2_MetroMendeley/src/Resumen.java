@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class Resumen {
     
     private String titulo;
-    private String autor;
+    private Lista autor;
     private String cuerpo;
     private Lista palabraClave;
     private int numElementos;  //número de elementos que posee la tabla
@@ -29,11 +29,11 @@ public class Resumen {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
+    public Lista getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Lista autor) {
         this.autor = autor;
     }
 
@@ -113,18 +113,12 @@ public class Resumen {
                 cont++;                    
             }
             
-            String aux = "";
+            Lista aux = new Lista();
+            
             for (int i = 2; i < cont; i++) 
             {
-                if(i == cont-1)
-                {
-                    aux += tempSplit[i];
-                    
-                }
-                else
-                {
-                    aux += tempSplit[i] + ",";
-                }
+                Nodo nodito = new Nodo(tempSplit[i]);
+                    aux.addAtEnd(nodito);
                 
             }
             
@@ -147,7 +141,8 @@ public class Resumen {
                 String[] palabras = replace.split(",");
                 
                 for (int i = 0; i < palabras.length; i++) {
-                    Nodo nodo = new Nodo(palabras[i]);
+                    
+                    Nodo nodo = new Nodo(palabras[i].replace(".", ""));
                     lista.addAtEnd(nodo);
                 }
                 
@@ -158,7 +153,9 @@ public class Resumen {
                 String[] palabras = replace.split(",");
                 
                 for (int i = 0; i < palabras.length; i++) {
-                    Nodo nodo = new Nodo(palabras[i]);
+                   
+                    
+                    Nodo nodo = new Nodo(palabras[i].replace(".", ""));
                     lista.addAtEnd(nodo);
                 }
                 

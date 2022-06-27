@@ -17,7 +17,7 @@ public class Resumen {
     private String titulo;
     private String autor;
     private String cuerpo;
-    private String palabraClave;
+    private Lista palabraClave;
     private int numElementos;  //número de elementos que posee la tabla
     
     
@@ -45,11 +45,11 @@ public class Resumen {
         this.cuerpo = cuerpo;
     }
 
-    public String getPalabraClave() {
+    public Lista getPalabraClave() {
         return palabraClave;
     }
 
-    public void setPalabraClave(String palabraClave) {
+    public void setPalabraClave(Lista palabraClave) {
         this.palabraClave = palabraClave;
     }
 
@@ -139,13 +139,30 @@ public class Resumen {
             // ASIGNAR PALABRAS CLAVE \\
                 
             String palabra = tempSplit[cont+2];
+            Lista lista = new Lista();
+            
             
             if(palabra.contains("Palabras Claves:")){
                 String replace = palabra.replace("Palabras Claves:", "");
-                this.setPalabraClave(replace);
+                String[] palabras = replace.split(",");
+                
+                for (int i = 0; i < palabras.length; i++) {
+                    Nodo nodo = new Nodo(palabras[i]);
+                    lista.addAtEnd(nodo);
+                }
+                
+                this.setPalabraClave(lista);
+                
             }else if(palabra.contains("Palabras claves:")){
                 String replace = palabra.replace("Palabras claves:", "");
-                this.setPalabraClave(replace);
+                String[] palabras = replace.split(",");
+                
+                for (int i = 0; i < palabras.length; i++) {
+                    Nodo nodo = new Nodo(palabras[i]);
+                    lista.addAtEnd(nodo);
+                }
+                
+                this.setPalabraClave(lista);
             }
             
  

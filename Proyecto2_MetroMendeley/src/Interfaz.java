@@ -332,20 +332,29 @@ public class Interfaz extends javax.swing.JFrame {
                             key = key.getPnext();
                         }
                         Nodo autorsito = resumen.getAutor().getPfirst();
+                        boolean test = true;
                         for (int i = 0; i < resumen.getAutor().getTamanho() ; i++)
                         {
-                            String a = autorsito.getData().toString();
+                           Object a = autorsito.getData();
+                           String b = String.valueOf(a);
+                           test = true;
                             for (int j = 0; j < authorList.getItemCount(); j++) 
                             {
-                                System.out.println(authorList.getItemAt(j));
-                                if(a != authorList.getItemAt(j))
+                                if((b.trim()).equals((authorList.getItemAt(j)).trim()))
                                 {
-                                    authorList.addItem(a);
-                                    break;
+                                    test = false;
+                                    
                                 }
                             }
+                            
+                            if(test == true)
+                            {
+                                authorList.addItem(b);
+                            }
+                            
                             autorsito = autorsito.getPnext();
                         }
+                        
 
                     }else{
                         JOptionPane.showMessageDialog(null, "Error, no se puede insertar el mismo resumen dos veces.");

@@ -20,6 +20,7 @@ public class Interfaz extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         keyWordList.removeAllItems();
+        authorList.removeAllItems();
     }
 
     /**
@@ -58,6 +59,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         volverbuscarautor = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        authorList = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -223,6 +225,14 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/document-search-icon_2.png"))); // NOI18N
         jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
 
+        authorList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        authorList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                authorListActionPerformed(evt);
+            }
+        });
+        jPanel6.add(authorList, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 270, 40));
+
         jTabbedPane1.addTab("BUSCAR P.AUTOR", jPanel6);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -321,6 +331,21 @@ public class Interfaz extends javax.swing.JFrame {
                             keyWordList.addItem(key.getData().toString());
                             key = key.getPnext();
                         }
+                        Nodo autorsito = resumen.getAutor().getPfirst();
+                        for (int i = 0; i < resumen.getAutor().getTamanho() ; i++)
+                        {
+                            String a = autorsito.getData().toString();
+                            for (int j = 0; j < authorList.getItemCount(); j++) 
+                            {
+                                System.out.println(authorList.getItemAt(j));
+                                if(a != authorList.getItemAt(j))
+                                {
+                                    authorList.addItem(a);
+                                    break;
+                                }
+                            }
+                            autorsito = autorsito.getPnext();
+                        }
 
                     }else{
                         JOptionPane.showMessageDialog(null, "Error, no se puede insertar el mismo resumen dos veces.");
@@ -340,8 +365,8 @@ public class Interfaz extends javax.swing.JFrame {
                     Nodo autorsito = resumen.getAutor().getPfirst(); //este codigo es asi porque es el caso base, ahorita ver como hacer para que no se repitan los autores en el caso de arriba.
                     for (int i = 0; i < resumen.getAutor().getTamanho() ; i++) 
                     {
-                        keyWordList.addItem(autorsito.getData().toString());
-                        key = autorsito.getPnext();
+                        authorList.addItem(autorsito.getData().toString());
+                        autorsito = autorsito.getPnext();
                     }
                     
                 }
@@ -354,6 +379,10 @@ public class Interfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Archivo inválido.");
         }
     }//GEN-LAST:event_seleccionarActionPerformed
+
+    private void authorListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_authorListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -393,6 +422,7 @@ public class Interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarresumen;
     private javax.swing.JButton analizar;
+    private javax.swing.JComboBox<String> authorList;
     private javax.swing.JButton buscarautor;
     private javax.swing.JButton buscarpalabraclave;
     private javax.swing.JButton jButton1;

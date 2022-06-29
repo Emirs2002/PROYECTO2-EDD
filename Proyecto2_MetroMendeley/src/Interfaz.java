@@ -390,10 +390,10 @@ public class Interfaz extends javax.swing.JFrame {
             String palabrafinal = palabraclave.toLowerCase().replaceAll("\\p{Punct}", "");
             String[] textosplit = textof.split(palabrafinal+" ");
             cont = textosplit.length -1; 
-            palabrasclaves += temp.getData() + "," + "se repite" +" "+ cont+" "+ "veces"+"\n";
+            palabrasclaves += temp.getData() +  ":" + " " + "se repite" +" "+ cont+" "+ "veces"+"\n";
             temp = listakey.proximoNodo(temp);
         }
-        analisisderesumen.setText("Nombre del trabajo: "+ clave.getTitulo()+"\n" + "\n"+"Autores: "+ "\n" + clave.getAutor()+ "\n"+"Las palabras claves son: "+"\n"+palabrasclaves);
+        analisisderesumen.setText("Nombre del trabajo: "+ clave.getTitulo()+"\n" + "\n"+"Autores: "+ "\n" + clave.getAutor().ObtenerInfo()+ "\n"+"Las palabras claves son: "+"\n"+palabrasclaves);
            
         }else{
             JOptionPane.showMessageDialog(null, "Lo sentimos no se puede mostrar el analisis de este resumen");

@@ -107,6 +107,7 @@ public class HashTable {
             JOptionPane.showMessageDialog(null, "Conviene aumentar el tamanho");
         }
     }
+
     
     public Resumen buscar(String clave){
         Resumen resumen;

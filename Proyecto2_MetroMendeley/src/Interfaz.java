@@ -364,11 +364,30 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboResumenesActionPerformed
 
+    @SuppressWarnings("empty-statement")
     private void cboResumenesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboResumenesItemStateChanged
         String titresumen = (String) cboResumenes.getSelectedItem();
         Resumen clave = hs.buscar(titresumen);
+        Lista listakey = clave.getPalabraClave();
+        
+
         if (titresumen == clave.getTitulo()){
-            analisisderesumen.setText("Nombre del trabajo: "+ clave.getTitulo()+"\n" + "\n"+"Autores: "+ "\n" +clave.getAutor());
+        String texto = clave.getCuerpo().toLowerCase();
+        String textof = texto.replaceAll("\\p{Punct}", "");
+        String palabrasclaves="";
+        Nodo temp = listakey.getPfirst();
+        for (int i = 0; i< listakey.getTamanho(); i++ ){ 
+            int cont = 0;   
+//            System.out.println(listakey.getNodo(i).getData()); 
+            String palabraclave = (String) listakey.getNodo(i).getData();
+            String palabrafinal = palabraclave.toLowerCase().replaceAll("\\p{Punct}", "");
+            String[] textosplit = textof.split(palabrafinal+" ");
+            cont = textosplit.length -1; 
+            palabrasclaves += temp.getData() + "," + "se repite" +" "+ cont+" "+ "veces"+"\n";
+            temp = listakey.proximoNodo(temp);
+        }
+        analisisderesumen.setText("Nombre del trabajo: "+ clave.getTitulo()+"\n" + "\n"+"Autores: "+ "\n" + clave.getAutor()+ "\n"+"Las palabras claves son: "+"\n"+palabrasclaves);
+           
         }else{
             JOptionPane.showMessageDialog(null, "Lo sentimos no se puede mostrar el analisis de este resumen");
         }

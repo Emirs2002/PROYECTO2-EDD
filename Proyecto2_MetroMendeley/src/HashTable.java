@@ -102,16 +102,7 @@ public class HashTable {
             JOptionPane.showMessageDialog(null, "Conviene aumentar el tamanho");
         }
     }
-    public void insertarpalabra(Resumen resumen){
-        int posicion;
-        posicion = direccion(resumen.getPalabraClave());
-        (this.getTabla())[posicion] = resumen;
-        this.numElementos++;
-        this.factorCarga = (double)(this.numElementos)/this.tamanhoTabla;
-        if(this.factorCarga > 0.5){
-            JOptionPane.showMessageDialog(null, "Conviene aumentar el tamanho");
-        }
-    }
+
     
     public Resumen buscar(String clave){
         Resumen resumen;

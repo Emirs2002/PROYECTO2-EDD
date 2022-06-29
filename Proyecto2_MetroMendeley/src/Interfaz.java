@@ -50,6 +50,10 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         volveranalizar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        cboResumenes = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        analisisderesumen = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
         volverbuscarpalabraclave = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -180,7 +184,29 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel4.add(volveranalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 100, 40));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/document-search-flat.png"))); // NOI18N
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
+
+        cboResumenes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboResumenesItemStateChanged(evt);
+            }
+        });
+        cboResumenes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboResumenesActionPerformed(evt);
+            }
+        });
+        jPanel4.add(cboResumenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 350, -1));
+
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Lista de resumenes ");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        analisisderesumen.setColumns(20);
+        analisisderesumen.setRows(5);
+        jScrollPane2.setViewportView(analisisderesumen);
+
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 460, 390));
 
         jTabbedPane1.addTab("ANALIZAR RESUMEN", jPanel4);
 
@@ -309,7 +335,10 @@ public class Interfaz extends javax.swing.JFrame {
 
                     if(hs.buscar(resumen.getTitulo()) == null){
                         hs.insertar(resumen);
+
                         outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
+                        cboResumenes.addItem(resumen.getTitulo());
+
 
 
                     }else{
@@ -320,11 +349,15 @@ public class Interfaz extends javax.swing.JFrame {
                 else{
 
                     hs.insertar(resumen);
+
                     outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
                     
                     
-                }
+                    cboResumenes.addItem(resumen.getTitulo());
 
+
+                }
+                
             }else{
                 JOptionPane.showMessageDialog(null, "Tipo de archivo inválido, ingrese un archivo de texto.");
             }
@@ -333,6 +366,39 @@ public class Interfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Archivo inválido.");
         }
     }//GEN-LAST:event_seleccionarActionPerformed
+
+    private void cboResumenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboResumenesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboResumenesActionPerformed
+
+    @SuppressWarnings("empty-statement")
+    private void cboResumenesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboResumenesItemStateChanged
+        String titresumen = (String) cboResumenes.getSelectedItem();
+        Resumen clave = hs.buscar(titresumen);
+        Lista listakey = clave.getPalabraClave();
+        
+
+        if (titresumen == clave.getTitulo()){
+        String texto = clave.getCuerpo().toLowerCase();
+        String textof = texto.replaceAll("\\p{Punct}", "");
+        String palabrasclaves="";
+        Nodo temp = listakey.getPfirst();
+        for (int i = 0; i< listakey.getTamanho(); i++ ){ 
+            int cont = 0;   
+//            System.out.println(listakey.getNodo(i).getData()); 
+            String palabraclave = (String) listakey.getNodo(i).getData();
+            String palabrafinal = palabraclave.toLowerCase().replaceAll("\\p{Punct}", "");
+            String[] textosplit = textof.split(palabrafinal+" ");
+            cont = textosplit.length -1; 
+            palabrasclaves += temp.getData() + "," + "se repite" +" "+ cont+" "+ "veces"+"\n";
+            temp = listakey.proximoNodo(temp);
+        }
+        analisisderesumen.setText("Nombre del trabajo: "+ clave.getTitulo()+"\n" + "\n"+"Autores: "+ "\n" + clave.getAutor()+ "\n"+"Las palabras claves son: "+"\n"+palabrasclaves);
+           
+        }else{
+            JOptionPane.showMessageDialog(null, "Lo sentimos no se puede mostrar el analisis de este resumen");
+        }
+    }//GEN-LAST:event_cboResumenesItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -371,14 +437,17 @@ public class Interfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarresumen;
+    private javax.swing.JTextArea analisisderesumen;
     private javax.swing.JButton analizar;
     private javax.swing.JButton buscarautor;
     private javax.swing.JButton buscarpalabraclave;
+    private javax.swing.JComboBox<String> cboResumenes;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -389,6 +458,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea outputResumen;
     private javax.swing.JButton seleccionar;

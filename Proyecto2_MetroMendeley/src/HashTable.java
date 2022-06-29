@@ -22,8 +22,13 @@ public class HashTable {
         }
         this.numElementos = 0;
         this.factorCarga = 0.0;
-        
+         
     }
+    
+    
+    // CONSTRUCTOR 2 \\   
+
+   
 
     // GETTERS Y SETTERS \\
     
@@ -58,7 +63,7 @@ public class HashTable {
     public void setTabla(Resumen[] tabla) {
         this.tabla = tabla;
     }
-    
+       
     // ASIGNAR LAS CLAVES \\
     
     public int direccion(String clave){
@@ -115,4 +120,5 @@ public class HashTable {
         }
         return resumen;
     } 
+
 }

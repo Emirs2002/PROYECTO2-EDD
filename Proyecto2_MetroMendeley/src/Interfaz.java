@@ -205,7 +205,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
 
         keyWordList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel5.add(keyWordList, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 250, -1));
+        jPanel5.add(keyWordList, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 52, 250, 40));
 
         jTabbedPane1.addTab("BUSCAR P.CLAVE", jPanel5);
 

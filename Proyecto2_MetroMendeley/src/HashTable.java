@@ -8,14 +8,16 @@ import javax.swing.JOptionPane;
  * @version 25/06/2022
  */
 public class HashTable {
-    int tamanhoTabla = 23;
+    int tamanhoTabla = 0;
     private int numElementos;
     private double factorCarga;
     private Resumen[] tabla;
+    private keywordArr[] tabla2;
     
     // CONSTRUCTOR \\
 
     public HashTable() {
+        tamanhoTabla = 23;
         tabla = new Resumen[this.tamanhoTabla];
         for (int i = 0; i < this.tamanhoTabla; i++) {
             this.tabla[i] = null;
@@ -25,9 +27,19 @@ public class HashTable {
          
     }
     
-    
     // CONSTRUCTOR 2 \\   
-
+    
+    public HashTable(String aux) 
+    {
+    tamanhoTabla = 43;
+    tabla2 = new keywordArr[this.tamanhoTabla];
+        for (int i = 0; i < this.tamanhoTabla; i++) 
+        {
+            this.tabla2[i] = null;
+        }
+        this.numElementos = 0;
+        this.factorCarga = 0.0;
+    }
    
 
     // GETTERS Y SETTERS \\
@@ -63,6 +75,16 @@ public class HashTable {
     public void setTabla(Resumen[] tabla) {
         this.tabla = tabla;
     }
+    
+
+    public keywordArr[] getTabla2() {
+        return tabla2;
+    }
+
+
+    public void setTabla2(keywordArr[] tabla2) {
+        this.tabla2 = tabla2;
+    }
        
     // ASIGNAR LAS CLAVES \\
     
@@ -83,6 +105,26 @@ public class HashTable {
         }
         return index;
     }
+    
+        public int direccion2(String clave)
+        {
+        int i =0;
+        int index;
+        long valorInicial;
+        
+        valorInicial = transformarClave(clave); 
+        
+        index = (int)(valorInicial % this.tamanhoTabla); //ARITMÉTICA MODULAR
+        
+        while((this.tabla2)[index] != null && !((this.tabla2)[index].getKeyword().equals(clave)))
+        {
+            i++;
+            index = index + i*i;
+            index = index % this.tamanhoTabla;
+            
+        }
+        return index;
+        }
     
     public long transformarClave(String clave){
         long d = 0;
@@ -107,8 +149,20 @@ public class HashTable {
             JOptionPane.showMessageDialog(null, "Conviene aumentar el tamanho");
         }
     }
-
     
+    public void insertar2(keywordArr key)
+    {
+        int posicion;
+        posicion = direccion2(key.getKeyword());
+        (this.getTabla2())[posicion] = key;
+        this.numElementos++;
+        this.factorCarga = (double)(this.numElementos)/this.tamanhoTabla;
+        if(this.factorCarga > 0.5)
+        {
+            JOptionPane.showMessageDialog(null, "Conviene aumentar el tamanho");
+        }
+    }
+
     public Resumen buscar(String clave){
         Resumen resumen;
         int index;
@@ -121,5 +175,20 @@ public class HashTable {
         }
         return resumen;
     } 
+
+    public keywordArr buscar2(String clave)
+    {
+        keywordArr key;
+        int index;
+        
+        index = direccion2(clave);
+        key = this.tabla2[index];
+        
+        if(key != null){
+            return key;
+        }
+        return key;
+    } 
+
 
 }

@@ -13,12 +13,19 @@ public class keywordArr {
     
     private String keyword;
     private String titulo;
+    private Lista titulos;
 
     public keywordArr(String keyword, String titulo) {
         this.keyword = keyword;
         this.titulo = titulo;
     }
-
+    
+    public keywordArr(String keyword)
+    {
+        this.keyword = keyword;
+        this.titulos = new Lista();
+    }
+    
 
     /**
      * @return the keyword
@@ -47,5 +54,20 @@ public class keywordArr {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
+    /**
+     * @return the titulos
+     */
+    public Lista getTitulos() {
+        return titulos;
+    }
+
+    /**
+     * @param titulos the titulos to set
+     */
+    public void setTitulos(Lista titulos) {
+        this.titulos = titulos;
+    }
+    
     
 }

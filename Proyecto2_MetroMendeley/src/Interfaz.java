@@ -380,7 +380,9 @@ public class Interfaz extends javax.swing.JFrame {
 
         if (titresumen == clave.getTitulo()){
         String texto = clave.getCuerpo().toLowerCase();
-        String textof = texto.replaceAll("\\p{Punct}", "");
+        String textof = texto.replaceAll("\\p{Punct}", "");  //Quita todos los signos de puntuación
+        //Esto nos sirve para validar si tienen la palabra al inicio y final se cuenten
+        String textomodify = "@prueba@ " + textof + " @prueba@";
         String palabrasclaves="";
         Nodo temp = listakey.getPfirst();
         for (int i = 0; i< listakey.getTamanho(); i++ ){ 
@@ -388,7 +390,7 @@ public class Interfaz extends javax.swing.JFrame {
 //            System.out.println(listakey.getNodo(i).getData()); 
             String palabraclave = (String) listakey.getNodo(i).getData();
             String palabrafinal = palabraclave.toLowerCase().replaceAll("\\p{Punct}", "");
-            String[] textosplit = textof.split(palabrafinal+" ");
+            String[] textosplit = textomodify.split(palabrafinal+" ");
             cont = textosplit.length -1; 
             palabrasclaves += temp.getData() +  ":" + " " + "se repite" +" "+ cont+" "+ "veces"+"\n";
             temp = listakey.proximoNodo(temp);

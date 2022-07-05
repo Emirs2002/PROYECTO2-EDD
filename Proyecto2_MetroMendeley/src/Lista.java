@@ -141,6 +141,33 @@ public class Lista {
         tamanho++;        
         
     }
+    //Ordenar lista
+    public void Ordenar() {
+        // nodos auxiliares
+        Nodo aux = pfirst;
+        Nodo next = null;
+        // variable auxiliar
+        Object temp;
+        if (isEmpty()) return;
+        // For each element
+        for (int i = 0;i<this.getTamanho();i++) {
+            // buscamos un valor en la lista
+            next = aux.getPnext();
+            while (next != null) {
+                // If I found tha value
+                if (aux.getData().toString().compareTo(next.getData().toString()) > 0) {
+                    // Then I exchange the values between those nodes
+                    temp = aux.getData();
+                    aux.setData(next.getData());
+                    next.setData(temp);
+                }
+                // And go to the next value to compare
+                next = next.getPnext();
+            }
+            // Then I move my comparassion pointer
+            aux = aux.getPnext();
+        }
+    }
 
     //BUSCAR ELEMENTO EN LA LISTA 
     public Nodo Buscar(Object valor){

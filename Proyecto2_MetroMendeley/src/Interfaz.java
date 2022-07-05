@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 /**
@@ -11,6 +14,8 @@ import javax.swing.JOptionPane;
  */
 public class Interfaz extends javax.swing.JFrame {
     HashTable hs = new HashTable();
+    Lista titulos = new Lista();
+    
     
     /**
      * Creates new form Interfaz
@@ -19,6 +24,7 @@ public class Interfaz extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        
     }
 
     /**
@@ -196,6 +202,7 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
         jPanel4.add(cboResumenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 350, -1));
+        cboResumenes.getAccessibleContext().setAccessibleDescription("");
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Lista de resumenes ");
@@ -323,11 +330,11 @@ public class Interfaz extends javax.swing.JFrame {
         File archivo = fc.getSelectedFile();
         
         String filename = archivo.getPath();
-        
         try{
             if((archivo.getName()).contains(".txt"))
             {
-                Resumen resumen = new Resumen(filename);  
+                Resumen resumen = new Resumen(filename);
+                
 
                 if(hs.getNumElementos() != 0)
                 {                
@@ -335,7 +342,9 @@ public class Interfaz extends javax.swing.JFrame {
                     if(hs.buscar(resumen.getTitulo()) == null){
                         hs.insertar(resumen);
                         outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave());
-                        cboResumenes.addItem(resumen.getTitulo());
+                        Nodo titulo = new Nodo(resumen.getTitulo());
+                        titulos.addAtEnd(titulo);
+//                        cboResumenes.addItem(resumen.getTitulo());
 
 
                     }else{
@@ -347,21 +356,29 @@ public class Interfaz extends javax.swing.JFrame {
 
                     hs.insertar(resumen);
                     outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave());
-                    cboResumenes.addItem(resumen.getTitulo());
-
-                }
-                
+                    Nodo titulo = new Nodo(resumen.getTitulo());
+                    titulos.addAtEnd(titulo);
+//                    cboResumenes.addItem(resumen.getTitulo());
+                }   
             }else{
                 JOptionPane.showMessageDialog(null, "Tipo de archivo inválido, ingrese un archivo de texto.");
             }
+
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Archivo inválido.");
         }
+        titulos.Ordenar();
+                
+                for(int i =0; i<titulos.getTamanho(); i++){
+                    cboResumenes.addItem((String) titulos.getNodo(i).getData());
+                    System.out.println("Agregado");
+                }         
     }//GEN-LAST:event_seleccionarActionPerformed
 
     private void cboResumenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboResumenesActionPerformed
-        // TODO add your handling code here:
+
+        
     }//GEN-LAST:event_cboResumenesActionPerformed
 
     @SuppressWarnings("empty-statement")
@@ -369,8 +386,6 @@ public class Interfaz extends javax.swing.JFrame {
         String titresumen = (String) cboResumenes.getSelectedItem();
         Resumen clave = hs.buscar(titresumen);
         Lista listakey = clave.getPalabraClave();
-        
-
         if (titresumen == clave.getTitulo()){
         String texto = clave.getCuerpo().toLowerCase();
         String textof = texto.replaceAll("\\p{Punct}", "");

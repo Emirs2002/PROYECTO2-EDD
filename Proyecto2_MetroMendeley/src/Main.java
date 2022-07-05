@@ -1,4 +1,9 @@
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
+
 
 /**
  *
@@ -12,13 +17,37 @@ public class Main {
     public static void main(String[] args) {
          Interfaz ventana = new Interfaz();
         ventana.setVisible(true);
-    }
-}
-//
+
 //        Resumen res1 = new Resumen("test\\Resumen1.txt");
 //        Resumen res2 = new Resumen("test\\Resumen2.txt");
 //        Resumen res3 = new Resumen("test\\Resumen3.txt");
 //        Resumen res4 = new Resumen("test\\Resumen4.txt");
+//
+//        Nodo titulo1 = new Nodo(res1.getTitulo());
+//        Nodo titulo2 = new Nodo(res2.getTitulo());
+//        Nodo titulo3 = new Nodo(res3.getTitulo());
+////        Nodo titulo4 = new Nodo(res4.getTitulo());
+//        
+//        Lista titulos = new Lista();
+//        titulos.addAtEnd(titulo3);
+////        titulos.addAtEnd(titulo4);
+//        titulos.addAtEnd(titulo1);
+//        titulos.addAtEnd(titulo2);
+////        System.out.println(titulo3.getData().toString().compareTo(titulo4.getData().toString()));
+//        for (int i=0; i<titulos.getTamanho();i++){
+//            System.out.println(titulos.getNodo(i).getData());
+//        }
+//        System.out.println("A partir de aqui se ordenan \n");
+//        titulos.Ordenar();
+//        for (int i=0; i<titulos.getTamanho();i++){
+//            System.out.println(titulos.getNodo(i).getData());
+//        }
+//        
+        
+        
+        
+
+        
 //        Lista lista = res1.getPalabraClave();
 //       
 //        String texto = res1.getCuerpo();
@@ -93,8 +122,8 @@ public class Main {
 //        System.out.println(cont); 
 //        }
 //    }
-//}
-//}
+}
+}
 
 
 

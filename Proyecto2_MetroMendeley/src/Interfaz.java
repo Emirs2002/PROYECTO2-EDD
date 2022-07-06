@@ -25,6 +25,7 @@ public class Interfaz extends javax.swing.JFrame {
         keyWordList.removeAllItems();
         authorList.removeAllItems();
         resumenlist.removeAllItems();
+        
     }
 
     /**
@@ -289,7 +290,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel6.add(volverbuscarautor, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 480, 100, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/document-search-icon_2.png"))); // NOI18N
-        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, -1, -1));
+        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, -1));
 
         authorList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         authorList.addActionListener(new java.awt.event.ActionListener() {
@@ -338,7 +339,7 @@ public class Interfaz extends javax.swing.JFrame {
                 showActionPerformed(evt);
             }
         });
-        jPanel6.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 80, 30));
+        jPanel6.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 80, 30));
 
         jTabbedPane1.addTab("BUSCAR P.AUTOR", jPanel6);
 
@@ -380,7 +381,90 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarautorActionPerformed
 
     private void agregarresumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarresumenActionPerformed
+        Resumen a1 = new Resumen("test\\Resumen1.txt");
+        Resumen a2 = new Resumen("test\\Resumen2.txt");
+        Resumen a3 = new Resumen("test\\Resumen3.txt");
+        //Resumen a4 = new Resumen("test\\Resumen4.txt");
+        hs.insertar(a1);
+        hs.insertar(a2);
+        hs.insertar(a3);
+        //hs.insertar(a4);
+        
+        Nodo n1 = new Nodo(a1);
+        Nodo n2 = new Nodo(a2);
+        Nodo n3 = new Nodo(a3);
+        //Nodo n4 = new Nodo(a4);
+        
+        Lista resumenes = new Lista();
+        resumenes.addAtEnd(n1);
+        resumenes.addAtEnd(n2);
+        resumenes.addAtEnd(n3);
+        //resumenes.addAtEnd(n4);
+        
+        Nodo resumen = resumenes.getPfirst();
+        
+        for (int i = 0; i < resumenes.getTamanho(); i++) {
+            Resumen r = (Resumen)resumen.getData();
+            cboResumenes.addItem(r.getTitulo());
+            Nodo nodito = r.getPalabraClave().getPfirst();
+            for (int j = 0; j < r.getPalabraClave().getTamanho(); j++) 
+            {
+                keywordArr k = new keywordArr(String.valueOf(nodito.getData()), r.getTitulo());
+                hs2.insertar2(k);
+                nodito = nodito.getPnext();
+            }
+        Nodo key = r.getPalabraClave().getPfirst();
+            for (int k = 0; k < r.getPalabraClave().getTamanho() ; k++) 
+            {
+                keyWordList.addItem(key.getData().toString());
+                key = key.getPnext();
+            }
+        Nodo autorsito = r.getAutor().getPfirst();
+        boolean test = true;
+        for (int o = 0; o < r.getAutor().getTamanho() ; o++)
+        {
+           Object a = autorsito.getData();
+           String b = String.valueOf(a).replaceAll("\\p{Punct}", " ");
+           test = true;
+            for (int j = 0; j < authorList.getItemCount(); j++) 
+            {
+                if((b.trim()).equals((authorList.getItemAt(j)).trim()))
+                {
+                    test = false;  
+                }
+            }
+            if(test == true)
+            {
+                authorList.addItem(b);
+            }
+            autorsito = autorsito.getPnext();
+        }
+        Nodo a = r.getAutor().getPfirst();
+        for (int p = 0; p < r.getAutor().getTamanho(); p++) 
+            {
+                if(hs3.buscar2(String.valueOf(a.getData()).replaceAll("\\p{Punct}", " "))==null)
+                {
+                    keywordArr m = new keywordArr(String.valueOf(a.getData()).replaceAll("\\p{Punct}", " "));
+                    Nodo n = new Nodo(r.getTitulo());
+                    (m.getTitulos()).addAtEnd(n);
+                    hs3.insertar2(m);
+                    a = a.getPnext();
+                }
+                else 
+                {
+                    keywordArr m = hs3.buscar2(String.valueOf(a.getData()).replaceAll("\\p{Punct}", " "));
+                    Nodo n = new Nodo(r.getTitulo());
+                    (m.getTitulos()).addAtEnd(n);
+                    hs3.insertar2(m);
+                    a = a.getPnext();
+                }
+            }   
+        resumen = resumen.getPnext();
+        }
+        
+        outputResumen.setText("Cargados los tres resumenes iniciales.");
         jTabbedPane1.setSelectedIndex(1);
+        
     }//GEN-LAST:event_agregarresumenActionPerformed
 
     private void analizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analizarActionPerformed
@@ -414,6 +498,8 @@ public class Interfaz extends javax.swing.JFrame {
     */
     private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
         
+        outputResumen.setText("");
+        
         JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(null);
        
@@ -439,6 +525,7 @@ public class Interfaz extends javax.swing.JFrame {
                             hs2.insertar2(k);
                             nodito = nodito.getPnext();
                         }
+                        //listo 
                         
                         outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
                         cboResumenes.addItem(resumen.getTitulo());
@@ -450,6 +537,8 @@ public class Interfaz extends javax.swing.JFrame {
                             keyWordList.addItem(key.getData().toString());
                             key = key.getPnext();
                         }
+                        //listo 
+                        
                         Nodo autorsito = resumen.getAutor().getPfirst();
                         boolean test = true;
                         for (int i = 0; i < resumen.getAutor().getTamanho() ; i++)
@@ -470,6 +559,8 @@ public class Interfaz extends javax.swing.JFrame {
                             }
                             autorsito = autorsito.getPnext();
                         }
+                        //listo
+                        
                         Nodo a = resumen.getAutor().getPfirst();
                         for (int i = 0; i < resumen.getAutor().getTamanho(); i++) 
                         {
@@ -490,6 +581,7 @@ public class Interfaz extends javax.swing.JFrame {
                            a = a.getPnext();
                         }
                         }
+                        //listo
 
                     }else{
                         JOptionPane.showMessageDialog(null, "Error, no se puede insertar el mismo resumen dos veces.");
@@ -567,7 +659,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         if (titresumen == clave.getTitulo()){
         String texto = clave.getCuerpo().toLowerCase();
-        String textof = texto.replaceAll("\\p{Punct}", "");
+        String textof = texto.replaceAll("\\p{Punct}", "");  //Quita todos los signos de puntuación
         //Esto nos sirve para validar si tienen la palabra al inicio y final se cuenten
         String textomodify = "@prueba@ " + textof + " @prueba@";
         String palabrasclaves="";
@@ -620,10 +712,8 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showActionPerformed
         // TODO add your handling code here:
-        if(resumenlist.getSelectedItem()!= null ){
         Resumen resumen = hs.buscar(String.valueOf(resumenlist.getSelectedItem()));
-        outputResumen3.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());  
-        }
+        outputResumen3.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());                
     }//GEN-LAST:event_showActionPerformed
 
 

@@ -620,8 +620,10 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showActionPerformed
         // TODO add your handling code here:
+        if(resumenlist.getSelectedItem()!= null ){
         Resumen resumen = hs.buscar(String.valueOf(resumenlist.getSelectedItem()));
-        outputResumen3.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());                
+        outputResumen3.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());  
+        }
     }//GEN-LAST:event_showActionPerformed
 
 

@@ -289,7 +289,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel6.add(volverbuscarautor, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 480, 100, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/document-search-icon_2.png"))); // NOI18N
-        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
+        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, -1, -1));
 
         authorList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         authorList.addActionListener(new java.awt.event.ActionListener() {
@@ -332,13 +332,13 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel11.setText("Resúmenes del autor seleccionado:");
         jPanel6.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
 
-        show.setText("Show");
+        show.setText("Mostrar");
         show.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showActionPerformed(evt);
             }
         });
-        jPanel6.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 172, 70, 30));
+        jPanel6.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 80, 30));
 
         jTabbedPane1.addTab("BUSCAR P.AUTOR", jPanel6);
 

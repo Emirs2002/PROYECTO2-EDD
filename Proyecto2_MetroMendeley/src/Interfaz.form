@@ -589,7 +589,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="420" y="90" width="-1" height="-1"/>
+                      <AbsoluteConstraints x="430" y="100" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -707,14 +707,14 @@
                 </Component>
                 <Component class="javax.swing.JToggleButton" name="show">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Show"/>
+                    <Property name="text" type="java.lang.String" value="Mostrar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="340" y="172" width="70" height="30"/>
+                      <AbsoluteConstraints x="340" y="170" width="80" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>

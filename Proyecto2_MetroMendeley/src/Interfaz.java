@@ -10,7 +10,10 @@ import javax.swing.JOptionPane;
  * @author simon
  */
 public class Interfaz extends javax.swing.JFrame {
+    String aux = "";
     HashTable hs = new HashTable();
+    HashTable hs2 = new HashTable(aux);
+    HashTable hs3 = new HashTable(aux);
     
     /**
      * Creates new form Interfaz
@@ -19,6 +22,10 @@ public class Interfaz extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        keyWordList.removeAllItems();
+        authorList.removeAllItems();
+        resumenlist.removeAllItems();
+        
     }
 
     /**
@@ -57,9 +64,22 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         volverbuscarpalabraclave = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        keyWordList = new javax.swing.JComboBox<>();
+        buscar1 = new javax.swing.JToggleButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        outputResumen2 = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         volverbuscarautor = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        authorList = new javax.swing.JComboBox<>();
+        buscar2 = new javax.swing.JToggleButton();
+        resumenlist = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        outputResumen3 = new javax.swing.JTextArea();
+        jLabel11 = new javax.swing.JLabel();
+        show = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -226,6 +246,34 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/keyword.png"))); // NOI18N
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
 
+        keyWordList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        keyWordList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keyWordListActionPerformed(evt);
+            }
+        });
+        jPanel5.add(keyWordList, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 52, 270, 40));
+
+        buscar1.setText("Buscar");
+        buscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+
+        outputResumen2.setColumns(20);
+        outputResumen2.setRows(5);
+        outputResumen2.setFocusable(false);
+        jScrollPane3.setViewportView(outputResumen2);
+
+        jPanel5.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 310, 310));
+
+        jLabel10.setBackground(new java.awt.Color(255, 204, 0));
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setText("Palabras claves:");
+        jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+
         jTabbedPane1.addTab("BUSCAR P.CLAVE", jPanel5);
 
         jPanel6.setBackground(new java.awt.Color(51, 153, 255));
@@ -242,7 +290,56 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel6.add(volverbuscarautor, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 480, 100, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/document-search-icon_2.png"))); // NOI18N
-        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
+        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, -1));
+
+        authorList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        authorList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                authorListActionPerformed(evt);
+            }
+        });
+        jPanel6.add(authorList, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 270, 40));
+
+        buscar2.setText("Buscar");
+        buscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar2ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(buscar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+
+        resumenlist.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        resumenlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resumenlistActionPerformed(evt);
+            }
+        });
+        jPanel6.add(resumenlist, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 270, 40));
+
+        jLabel9.setBackground(new java.awt.Color(255, 204, 0));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setText("Autores:");
+        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
+
+        outputResumen3.setColumns(20);
+        outputResumen3.setRows(5);
+        outputResumen3.setFocusable(false);
+        jScrollPane4.setViewportView(outputResumen3);
+
+        jPanel6.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 340, 280));
+
+        jLabel11.setBackground(new java.awt.Color(255, 204, 0));
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setText("Resúmenes del autor seleccionado:");
+        jPanel6.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+
+        show.setText("Mostrar");
+        show.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showActionPerformed(evt);
+            }
+        });
+        jPanel6.add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 80, 30));
 
         jTabbedPane1.addTab("BUSCAR P.AUTOR", jPanel6);
 
@@ -284,7 +381,90 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarautorActionPerformed
 
     private void agregarresumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarresumenActionPerformed
+        Resumen a1 = new Resumen("test\\Resumen1.txt");
+        Resumen a2 = new Resumen("test\\Resumen2.txt");
+        Resumen a3 = new Resumen("test\\Resumen3.txt");
+        //Resumen a4 = new Resumen("test\\Resumen4.txt");
+        hs.insertar(a1);
+        hs.insertar(a2);
+        hs.insertar(a3);
+        //hs.insertar(a4);
+        
+        Nodo n1 = new Nodo(a1);
+        Nodo n2 = new Nodo(a2);
+        Nodo n3 = new Nodo(a3);
+        //Nodo n4 = new Nodo(a4);
+        
+        Lista resumenes = new Lista();
+        resumenes.addAtEnd(n1);
+        resumenes.addAtEnd(n2);
+        resumenes.addAtEnd(n3);
+        //resumenes.addAtEnd(n4);
+        
+        Nodo resumen = resumenes.getPfirst();
+        
+        for (int i = 0; i < resumenes.getTamanho(); i++) {
+            Resumen r = (Resumen)resumen.getData();
+            cboResumenes.addItem(r.getTitulo());
+            Nodo nodito = r.getPalabraClave().getPfirst();
+            for (int j = 0; j < r.getPalabraClave().getTamanho(); j++) 
+            {
+                keywordArr k = new keywordArr(String.valueOf(nodito.getData()), r.getTitulo());
+                hs2.insertar2(k);
+                nodito = nodito.getPnext();
+            }
+        Nodo key = r.getPalabraClave().getPfirst();
+            for (int k = 0; k < r.getPalabraClave().getTamanho() ; k++) 
+            {
+                keyWordList.addItem(key.getData().toString());
+                key = key.getPnext();
+            }
+        Nodo autorsito = r.getAutor().getPfirst();
+        boolean test = true;
+        for (int o = 0; o < r.getAutor().getTamanho() ; o++)
+        {
+           Object a = autorsito.getData();
+           String b = String.valueOf(a).replaceAll("\\p{Punct}", " ");
+           test = true;
+            for (int j = 0; j < authorList.getItemCount(); j++) 
+            {
+                if((b.trim()).equals((authorList.getItemAt(j)).trim()))
+                {
+                    test = false;  
+                }
+            }
+            if(test == true)
+            {
+                authorList.addItem(b);
+            }
+            autorsito = autorsito.getPnext();
+        }
+        Nodo a = r.getAutor().getPfirst();
+        for (int p = 0; p < r.getAutor().getTamanho(); p++) 
+            {
+                if(hs3.buscar2(String.valueOf(a.getData()).replaceAll("\\p{Punct}", " "))==null)
+                {
+                    keywordArr m = new keywordArr(String.valueOf(a.getData()).replaceAll("\\p{Punct}", " "));
+                    Nodo n = new Nodo(r.getTitulo());
+                    (m.getTitulos()).addAtEnd(n);
+                    hs3.insertar2(m);
+                    a = a.getPnext();
+                }
+                else 
+                {
+                    keywordArr m = hs3.buscar2(String.valueOf(a.getData()).replaceAll("\\p{Punct}", " "));
+                    Nodo n = new Nodo(r.getTitulo());
+                    (m.getTitulos()).addAtEnd(n);
+                    hs3.insertar2(m);
+                    a = a.getPnext();
+                }
+            }   
+        resumen = resumen.getPnext();
+        }
+        
+        outputResumen.setText("Cargados los tres resumenes iniciales.");
         jTabbedPane1.setSelectedIndex(1);
+        
     }//GEN-LAST:event_agregarresumenActionPerformed
 
     private void analizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analizarActionPerformed
@@ -318,6 +498,8 @@ public class Interfaz extends javax.swing.JFrame {
     */
     private void seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarActionPerformed
         
+        outputResumen.setText("");
+        
         JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(null);
        
@@ -335,11 +517,71 @@ public class Interfaz extends javax.swing.JFrame {
 
                     if(hs.buscar(resumen.getTitulo()) == null){
                         hs.insertar(resumen);
-
+                        
+                        Nodo nodito = resumen.getPalabraClave().getPfirst();
+                        for (int i = 0; i < resumen.getPalabraClave().getTamanho(); i++) 
+                        {
+                            keywordArr k = new keywordArr(String.valueOf(nodito.getData()), resumen.getTitulo());
+                            hs2.insertar2(k);
+                            nodito = nodito.getPnext();
+                        }
+                        //listo 
+                        
                         outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
                         cboResumenes.addItem(resumen.getTitulo());
 
-
+                        
+                        Nodo key = resumen.getPalabraClave().getPfirst();
+                        for (int i = 0; i < resumen.getPalabraClave().getTamanho() ; i++) 
+                        {
+                            keyWordList.addItem(key.getData().toString());
+                            key = key.getPnext();
+                        }
+                        //listo 
+                        
+                        Nodo autorsito = resumen.getAutor().getPfirst();
+                        boolean test = true;
+                        for (int i = 0; i < resumen.getAutor().getTamanho() ; i++)
+                        {
+                           Object a = autorsito.getData();
+                           String b = String.valueOf(a).replaceAll("\\p{Punct}", " ");
+                           test = true;
+                            for (int j = 0; j < authorList.getItemCount(); j++) 
+                            {
+                                if((b.trim()).equals((authorList.getItemAt(j)).trim()))
+                                {
+                                    test = false;  
+                                }
+                            }
+                            if(test == true)
+                            {
+                                authorList.addItem(b);
+                            }
+                            autorsito = autorsito.getPnext();
+                        }
+                        //listo
+                        
+                        Nodo a = resumen.getAutor().getPfirst();
+                        for (int i = 0; i < resumen.getAutor().getTamanho(); i++) 
+                        {
+                        if(hs3.buscar2(String.valueOf(a.getData()).replaceAll("\\p{Punct}", " "))==null)
+                        {
+                        keywordArr m = new keywordArr(String.valueOf(a.getData()).replaceAll("\\p{Punct}", " "));
+                        Nodo n = new Nodo(resumen.getTitulo());
+                        (m.getTitulos()).addAtEnd(n);
+                        hs3.insertar2(m);
+                        a = a.getPnext();
+                        }
+                        else 
+                        {
+                           keywordArr m = hs3.buscar2(String.valueOf(a.getData()).replaceAll("\\p{Punct}", " "));
+                           Nodo n = new Nodo(resumen.getTitulo());
+                           (m.getTitulos()).addAtEnd(n);
+                           hs3.insertar2(m);
+                           a = a.getPnext();
+                        }
+                        }
+                        //listo
 
                     }else{
                         JOptionPane.showMessageDialog(null, "Error, no se puede insertar el mismo resumen dos veces.");
@@ -350,12 +592,43 @@ public class Interfaz extends javax.swing.JFrame {
 
                     hs.insertar(resumen);
 
+
                     outputResumen.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
-                    
-                    
                     cboResumenes.addItem(resumen.getTitulo());
-
-
+                    
+                    Nodo key = resumen.getPalabraClave().getPfirst();
+                    for (int i = 0; i < resumen.getPalabraClave().getTamanho() ; i++) 
+                    {
+                        keyWordList.addItem(key.getData().toString());
+                        key = key.getPnext();
+                        
+                    }
+                    Nodo autorsito = resumen.getAutor().getPfirst(); 
+                    for (int i = 0; i < resumen.getAutor().getTamanho() ; i++) 
+                    {
+                        authorList.addItem(autorsito.getData().toString().replaceAll("\\p{Punct}", " "));
+                        autorsito = autorsito.getPnext();                       
+                    }
+                    
+                    Nodo a = resumen.getAutor().getPfirst();
+                        for (int i = 0; i < resumen.getAutor().getTamanho(); i++) 
+                        {
+                        keywordArr m = new keywordArr(String.valueOf(a.getData()).replaceAll("\\p{Punct}", " "));
+                        
+                        Nodo n = new Nodo(resumen.getTitulo());
+                        (m.getTitulos()).addAtEnd(n);
+                        hs3.insertar2(m);
+                        a = a.getPnext();
+                        }
+                        
+                    Nodo nodito = resumen.getPalabraClave().getPfirst();
+                    for (int i = 0; i < resumen.getPalabraClave().getTamanho(); i++) 
+                    {
+                        keywordArr k = new keywordArr(String.valueOf(nodito.getData()), resumen.getTitulo());
+                        hs2.insertar2(k);
+                        nodito = nodito.getPnext();
+                    }
+                    
                 }
                 
             }else{
@@ -365,7 +638,13 @@ public class Interfaz extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Archivo inválido.");
         }
+
     }//GEN-LAST:event_seleccionarActionPerformed
+
+
+    private void authorListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_authorListActionPerformed
 
     private void cboResumenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboResumenesActionPerformed
         // TODO add your handling code here:
@@ -401,6 +680,42 @@ public class Interfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lo sentimos no se puede mostrar el analisis de este resumen");
         }
     }//GEN-LAST:event_cboResumenesItemStateChanged
+
+    private void resumenlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumenlistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resumenlistActionPerformed
+
+    private void buscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar2ActionPerformed
+        // TODO add your handling code here:
+        resumenlist.removeAllItems();
+        outputResumen3.setText("");
+        keywordArr autor = hs3.buscar2(String.valueOf(authorList.getSelectedItem()));
+        Nodo a = autor.getTitulos().getPfirst();
+        for (int i = 0; i < autor.getTitulos().getTamanho() ; i++)
+        {
+            resumenlist.addItem(String.valueOf(a.getData()));
+            a = a.getPnext();  
+        }       
+    }//GEN-LAST:event_buscar2ActionPerformed
+
+    private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
+        // TODO add your handling code here:
+        keywordArr palabra = hs2.buscar2(String.valueOf(keyWordList.getSelectedItem()));
+        Resumen resumen = hs.buscar(palabra.getTitulo());
+        outputResumen2.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());
+                        
+    }//GEN-LAST:event_buscar1ActionPerformed
+
+    private void keyWordListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keyWordListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_keyWordListActionPerformed
+
+    private void showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showActionPerformed
+        // TODO add your handling code here:
+        Resumen resumen = hs.buscar(String.valueOf(resumenlist.getSelectedItem()));
+        outputResumen3.setText(resumen.getTitulo() + "\n" + "\n" +"-Autores:" + "\n" + resumen.getAutor().ObtenerInfo() + "\n" + "\n"  +"-Resumen:" + "\n"+ resumen.getCuerpo() + "\n" + "\n" + "-Palabras claves:" + "\n" + resumen.getPalabraClave().ObtenerInfo());                
+    }//GEN-LAST:event_showActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -441,11 +756,16 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton agregarresumen;
     private javax.swing.JTextArea analisisderesumen;
     private javax.swing.JButton analizar;
+    private javax.swing.JComboBox<String> authorList;
+    private javax.swing.JToggleButton buscar1;
+    private javax.swing.JToggleButton buscar2;
     private javax.swing.JButton buscarautor;
     private javax.swing.JButton buscarpalabraclave;
     private javax.swing.JComboBox<String> cboResumenes;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -453,6 +773,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -461,9 +782,16 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JComboBox<String> keyWordList;
     private javax.swing.JTextArea outputResumen;
+    private javax.swing.JTextArea outputResumen2;
+    private javax.swing.JTextArea outputResumen3;
+    private javax.swing.JComboBox<String> resumenlist;
     private javax.swing.JButton seleccionar;
+    private javax.swing.JToggleButton show;
     private javax.swing.JButton volveragregar;
     private javax.swing.JButton volveranalizar;
     private javax.swing.JButton volverbuscarautor;
